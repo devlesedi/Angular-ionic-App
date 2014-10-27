@@ -231,7 +231,7 @@ angular.module('angularApp.controllers', [])
 	$scope.items = YourItems.all();
 
 	var settingWhere = function(){
-		var where  = {"user": $scope.user._id, "publish": true}
+		var where  = {"user": $scope.user._id, "published": true}
 	  where = JSON.stringify(where)
 	  return where
 	}
@@ -303,7 +303,7 @@ angular.module('angularApp.controllers', [])
 	  myPopup.then(function(res) {
 	  	if(res){
 			 	IonicComponent.Loading.show({template: 'Publish...'});
-		    Promise.resolve({method: 'PATCH', data : {publish: true}, timeout: 3000, url: '/api/cobject/v0/item/'+res})
+		    Promise.resolve({method: 'PATCH', data : {published: true}, timeout: 3000, url: '/api/cobject/v0/item/'+res})
 		    .then(function(response){
 					IonicComponent.Loading.hide();
 		    },function(err){
