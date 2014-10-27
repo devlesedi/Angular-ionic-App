@@ -1,0 +1,66 @@
+<div title="Search & Buy">
+  <div class="padding">
+  
+  <div class="list">
+	 
+    <label class="item item-input">
+	    <i class="icon ion-search placeholder-icon"></i>
+	    <input type="text" placeholder="What are you looking for?" ng-model="item.name">
+    </label>
+
+	   <label class="item item-input item-select">
+      <div class="input-label">
+        Area
+      </div>
+      <select ng-model="item.selectedArea">
+      	<option selected></option>
+        <option ng-repeat="area in areas">{{area.name}}</option>
+      </select>
+    </label>
+   
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Category
+      </div>
+      <select ng-model="item.selectedCategory">
+        <option selected></option>
+        <option ng-repeat="category in categories">{{category.name}}</option>
+      </select>
+    </label>
+  
+
+  </div>
+
+	<div class="row" style="margin-bottom:20px;">
+		<div class="col col-33 col-offset-33">
+			<button style="width:100%" class="button button-energized" ng-click="submit()"> Find it! </button>
+		</div>
+	</div>
+
+	<div class="row" ng-show="load" style="text-align:center;">
+		<div class="col col-33 col-offset-33">
+			<li class="ion-loading-c" data-pack="default" data-tags="spinner, waiting, refresh, animation" data-animation="true"></li>
+		</div>
+	</div>
+
+<div >
+	<ul class="list-group list-group-lg no-radius">
+
+    <ion-item ng-show="visible"> {{items.length+' Offers' || 'No Offer' }} </ion-item>
+    <li class="list-group-item clearfix" ng-repeat="object in items">
+      <a class="item item-thumbnail-left pull-left thumb" href="#/jobs/view/{{object.id}}">
+        <span style="font-size:30px;">J</span>
+        <img ng-src="{{object.hiringCompanyLogo}}">
+      </a>
+      <div class="clear pull-right" ng-click="goTo('/jobs/view/' + object.id)">
+        <div>
+        <h3><a class="text-md" href="#/jobs/view/{{object.id}}">{{object.jobTitle}}</a><span class="label bg-light ng-binding">{{object.salaryNote}}</span></h3>
+        </div>
+        <p class="text-2-l">{{object.shortDescription}}</p>
+      </div>
+    </li>
+	</ul>
+
+</div>
+  </div>
+</div>

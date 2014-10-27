@@ -1,0 +1,54 @@
+<div class="content-wrapper">
+  <div class="row row-merge" style="height: 100%;">
+  <div class=" col-md-2  ">
+    <div>
+      <div class="IN_leftnav">
+        <div class="p2_btn">
+          <a class="btn btn-sm btn-danger font-bold" href="#/jobs/postjob">Post a Job</a>
+        </div>
+        <div class="p1_leftnav_common">
+          <ul class="nav nav-pills nav-sm list-inline">
+            <li ng-class="activePath == '/jobs/fulltime' || activePath.indexOf('/jobs/fulltime')>=0  ? 'active': ''">
+              <a href="#/jobs/fulltime" class="lev_curr">
+                <i class="fa fa-home fa-2x"></i>
+                Fulltime
+              </a>
+            </li>
+            <li ng-class="activePath == '/jobs/contracts' || activePath.indexOf('/jobs/contracts')>=0  ? 'active': ''">
+              <a href="#/jobs/contracts" class="lev_curr">
+                <i class="fa fa-home fa-2x"></i>
+                Contracts
+              </a>
+            </li>
+            <li ng-class="activePath == '/jobs/part-time' || activePath.indexOf('/jobs/part-time')>=0  ? 'active': ''">
+              <a href="#/jobs/part-time" class="lev_curr">
+                <i class="fa fa-home fa-2x"></i>
+                Part-time
+              </a>
+            </li>
+            <li ng-class="activePath == '/jobs/freelance' || activePath.indexOf('/jobs/freelance')>=0  ? 'active': ''">
+              <a href="#/jobs/freelance" class="lev_curr">
+                <i class="fa fa-home fa-2x"></i>
+                Freelance
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" col-md-10  ">
+        <div class="" id="main_page" style="padding-bottom: 0;">
+              <div class="row row-merge">
+                    <div class="col-md-12">
+                      <div class="container-responsive block-center">
+                        <div ui-view="tabledata"></div>             
+                      </div>
+                    </div><!-- 12 -->
+              </div><!-- row -->
+        </div><!-- container -->
+  </div><!-- col 10 --> 
+
+ 
+</div><!-- rowend -->
+</div>

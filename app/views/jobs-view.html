@@ -1,0 +1,46 @@
+<div class="job-details">
+    <div class="wrapper b-b">
+        <h3 class="font-thin m-n">{{details.jobTitle}}<small ng-show="details.tagline"><br></small></h3>
+    </div>
+    <div class="wrapper b-b">
+
+        <span class="thumbnail thumb-sm m-r-sm" style="font-size:30px;">Job</span>
+        <span ng-show="details.hiringCompany && !details.hiringCompanyWebsite">,</span>
+        <a ng-show="details.hiringCompanyWebsite &amp;&amp; details.hiringCompany" style="text-decoration:underline;" href="" target="_blank">,</a>
+        <span class="ng-binding">{{details.salaryNote}}</span>
+        <div class="pull-right text-sm text-muted">
+            <span am-time-ago="details.dateCreated">{{details.dateCreated}}</span>
+        </div>
+    </div>
+    <div class="wrapper">
+        {{details.jobDescription}}
+    </div>
+    <div class="wrapper" ng-show="details.sourceReference">
+        Source: <a href="{{details.sourceReference}}" target="_blank" title="Imported Angular.Js job source"></a>
+    </div>
+
+    <div class="wrapper">
+        <div class="panel b-a">
+            <div class="panel-heading" ng-hide="apply">
+                <div class="m-b-lg">
+                    Click here to <a href="" class="text-u-l" ng-click="apply=!apply; applied = false">Apply</a> 
+                    <div ng-show="applied" class="b-l-success ng-hide"><br>Thank you for applying for this role!</div>
+                </div>
+            </div>
+            <form ng-show="apply" ng-submit="applyForJob()" class="ng-pristine ng-invalid ng-invalid-required ng-hide">
+                <div class="panel-heading b-b b-light">
+                    <span>From:</span> <input class="input input-sm form-control ng-pristine ng-invalid ng-invalid-required ng-valid-email" type="email" ng-model="applicant.email" style="width:30%; display:inline;" required="">&nbsp;
+                    +<a class="btn-link" href="javascript:void(0);" ng-click="showSkills=!showSkills">Add skills</a>&nbsp;
+                    +<a class="btn-link" href="javascript:void(0);" ng-click="showExperience=!showExperience">Add experience</a>
+                    <span ng-show="showSkills" class="ng-hide"><br>Skills:</span> <input ng-show="showSkills" class="input input-sm form-control ng-pristine ng-valid ng-hide" type="text" ng-model="applicant.skills" style=" display:inline;">
+                    <span ng-show="showExperience" class="ng-hide"><br>Experience:</span> <input ng-show="showExperience" class="input input-sm form-control ng-pristine ng-valid ng-hide" type="text" ng-model="applicant.experience" style="display:inline;">
+                </div>
+                <textarea class="wrapper form-control ng-pristine ng-valid" style="min-height:100px" ng-model="applicant.message"></textarea>
+                <div class="panel-footer bg-light lt">
+                    <button class="btn btn-link pull-right" type="button" ng-click="apply=!apply"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-info w-xs font-bold" type="submit">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
