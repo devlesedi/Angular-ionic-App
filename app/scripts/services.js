@@ -3,7 +3,7 @@ angular.module('angularApp.services', [])
 .factory('Promise',function($http, APPID, APIKEY, BASEURL){
   return {
     resolve : function(data){
-      data.url = data.url 
+      data.url = BASEURL + data.url 
       if(!data.headers)
         data.headers = {}
       data.headers.Authorization = 'Basic '+ btoa(APPID+":"+APIKEY);
@@ -30,7 +30,7 @@ angular.module('angularApp.services', [])
       if (categories.length > 0) {
         def.resolve();
       } else {
-        Promise.resolve({ method: 'GET', url: '/data/category.json'})
+        Promise.resolve({ method: 'GET', url: '/api/cobject/v0/category'})
         .then(function(response){
           categories = response.data.data;
           def.resolve();
@@ -68,7 +68,7 @@ angular.module('angularApp.services', [])
       if (areas.length > 0) {
         def.resolve();
       } else {
-         Promise.resolve({ method: 'GET', url: '/data/area.json'})
+         Promise.resolve({ method: 'GET', url: '/api/cobject/v0/area'})
         .then(function(response){
           areas = response.data.data;
           def.resolve();

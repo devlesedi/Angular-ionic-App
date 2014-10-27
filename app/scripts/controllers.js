@@ -34,9 +34,8 @@ angular.module('angularApp.controllers', [])
 	
 	$scope.where = JSON.stringify(where);
 	$scope.getJobsList = function() {
-
-		//Promise.resolve({method: 'GET', url: '/api/cobject/v0/item?where='+where})
-		Promise.resolve({method: 'GET', url: '/data/jobs.json?where='+ $scope.where})
+		//Promise.resolve({method: 'GET', url: '/data/jobs.json?where='+ $scope.where})
+		Promise.resolve({method: 'GET', url: '/api/cobject/v0/item?where='+ $scope.where})
 		.then(function(response){
 			$scope.load = false;
 			$scope.items = response.data.data;
@@ -177,19 +176,19 @@ angular.module('angularApp.controllers', [])
 			
 			//rewrite
 			var formDataResult = new FormData();
-			formDataResult.append('name', $scope.publish.name)
-			formDataResult.append('description', $scope.publish.description)
-			formDataResult.append('area', ItemConfig.Area.get($scope.publish.area)._id)
-			formDataResult.append('tags', ItemConfig.Category.get($scope.publish.category)._id)
+			formDataResult.append('jobTitle', $scope.publish.name)
+			formDataResult.append('jobDescription', $scope.publish.description)
+			formDataResult.append('jobLocation', ItemConfig.Area.get($scope.publish.area)._id)
+			formDataResult.append('jobType', ItemConfig.Category.get($scope.publish.category)._id)
 			formDataResult.append('companyName', $scope.publish.companyName)
 			formDataResult.append('companySite', $scope.publish.companySite)
 			formDataResult.append('minSalaray', $scope.publish.minSalaray)
 			formDataResult.append('maxSalary', $scope.publish.maxSalary)
 			formDataResult.append('salaryRate', $scope.publish.salaryRate)
-			formDataResult.append('email', $scope.publish.email)
+			formDataResult.append('jobEmail', $scope.publish.email)
 			formDataResult.append('telephone', $scope.publish.telephone)
 			formDataResult.append('address', $scope.publish.address)
-			formDataResult.append('photo', $scope.lastPhoto, $scope.publish.name+'.jpg')
+			formDataResult.append('hiringCompanyLogo', $scope.lastPhoto, $scope.publish.name+'.jpg')
 			formDataResult.append('publish', false)
 
 			if($scope.user._id)
