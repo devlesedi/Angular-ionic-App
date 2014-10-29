@@ -30,6 +30,7 @@ angular.module('angularApp.services', [])
       if (categories.length > 0) {
         def.resolve();
       } else {
+        //Promise.resolve({ method: 'GET', url: '/data/category.json'})
         Promise.resolve({ method: 'GET', url: '/api/cobject/v0/category'})
         .then(function(response){
           categories = response.data.data;
@@ -68,7 +69,8 @@ angular.module('angularApp.services', [])
       if (areas.length > 0) {
         def.resolve();
       } else {
-         Promise.resolve({ method: 'GET', url: '/api/cobject/v0/area'})
+        //Promise.resolve({ method: 'GET', url: '/data/area.json'})
+        Promise.resolve({ method: 'GET', url: '/api/cobject/v0/area'})
         .then(function(response){
           areas = response.data.data;
           def.resolve();
@@ -106,7 +108,7 @@ angular.module('angularApp.services', [])
       // Simple index lookup
       Promise.resolve({method: 'GET', url: '/api/cobject/v0/item/'+itemId})
       .then(function(response){
-        item = response.data.data;
+        item = response.data;
         return item;
       },function(error){
         console.log(error);

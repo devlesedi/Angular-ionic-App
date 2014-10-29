@@ -47,14 +47,13 @@
 	<ul class="list-group list-group-lg no-radius">
 
     <ion-item ng-show="visible"> {{items.length+' Offers' || 'No Offer' }} </ion-item>
-    <li class="list-group-item clearfix" ng-repeat="object in items">
-      <a class="item item-thumbnail-left pull-left thumb" href="#/jobs/view/{{object.id}}">
-        <span style="font-size:30px;">J</span>
-        <img ng-src="{{object.hiringCompanyLogo}}">
+    <li class="list-group-item media clearfix" ng-repeat="object in items">
+      <a class="pull-left list-item" href="#/jobs/view/{{object.id}}">
+        <img class="media-object" style="max-height:90px;" ng-src="{{object.hiringCompanyLogo}}">
       </a>
-      <div class="clear pull-right" ng-click="goTo('/jobs/view/' + object.id)">
+      <div class="media-body" ng-click="goTo('/jobs/view/' + object.id)">
         <div>
-        <h3><a class="text-md" href="#/jobs/view/{{object.id}}">{{object.jobTitle}}</a><span class="label bg-light ng-binding">{{object.salaryNote}}</span></h3>
+        <h3><a class="text-md" href="#/jobs/view/{{object.id}}">{{object.jobTitle}}</a><span class="badge pull-right bg-light">{{salary(object)}}</span></h3>
         </div>
         <p class="text-2-l">{{object.shortDescription}}</p>
       </div>

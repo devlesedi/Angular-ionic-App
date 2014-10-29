@@ -28,7 +28,7 @@ angular.module('angularApp.controllers', [])
 		window.location="#!/jobs/";
 	};
 
-	var where  = {"name": { $options: "i"  }};
+	var where  = {"jobTitle": { $options: "i"  }};
 		
 	
 	
@@ -50,6 +50,9 @@ angular.module('angularApp.controllers', [])
 		})
 	}
 
+	$scope.salary=function(d){
+		var i="P",t=d.salaryMin,r=d.salaryMax;return i+=r&&t?t+" - P"+r:t?t:r,d.salaryType&&(i+=" per "+d.salaryType),i};
+
 	$scope.goTo=function(n){$location.path(n)};
 
 	$scope.submit = function(){
@@ -61,13 +64,13 @@ angular.module('angularApp.controllers', [])
 		if($scope.item.name == undefined)
 			$scope.item.name = '';
 
-		var where  = {"name": { "$regex" : ".*"+$scope.item.name+".*", $options: "i"  }}
+		var where  = {"jobTitle": { "$regex" : ".*"+$scope.item.name+".*", $options: "i"  }}
 		
 		if($scope.item.selectedCategory)
-			where.tags = ItemConfig.Category.get($scope.item.selectedCategory)._id
+			where.jobType = ItemConfig.Category.get($scope.item.selectedCategory)._id
 		
 		if($scope.item.selectedArea)
-			where.area = ItemConfig.Area.get($scope.item.selectedArea)._id	
+			where.jobLocation = ItemConfig.Area.get($scope.item.selectedArea)._id	
 		
 		$scope.where = JSON.stringify(where);
 			
