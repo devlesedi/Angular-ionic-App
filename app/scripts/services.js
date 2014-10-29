@@ -106,14 +106,10 @@ angular.module('angularApp.services', [])
     get: function(itemId) {
       var item = {};
       // Simple index lookup
-      Promise.resolve({method: 'GET', url: '/api/cobject/v0/item/'+itemId})
-      .then(function(response){
-        item = response.data;
-        return item;
-      },function(error){
-        console.log(error);
-        return item;
-      });
+      for(var i= 0; i<items.length; i++){
+        if(items[i]._id == itemId)
+        return items[i];
+      }
     },
     set: function(data){
       items = data;

@@ -82,12 +82,20 @@ angular.module('angularApp.controllers', [])
 .controller('ItemCtrl', function($scope, Utils, IonicComponent, ItemConfig, Promise) {
 
 	//angular.module("jobDetails",["ngSanitize"]).controller("jobDetailsCtrl",["$scope","$http","$routeParams",function(n,t,i){n.details={};n.applicant={};n.getJobDetails=function(i){t.get("/api/Jobs/GetJobDetails",{params:{id:i}}).success(function(t){n.details=t})};n.getJobDetails(i.jobId);n.salary=function(){var i="£",t=n.details.salaryMin,r=n.details.salaryMax;return i+=r&&t?t+" - £"+r:t?t:r,n.details.salaryType&&(i+=" per "+n.details.salaryType),i};n.applyForJob=function(){item={email:n.applicant.email,skills:n.applicant.skills,experience:n.applicant.experience,message:n.applicant.message,jobPostId:n.details.id};n.applicant.email!=""&&t.post("/api/Jobs/ApplyForJob",item).success(function(){n.applicant.message="";n.applied=!0;n.apply=!1})}}]);
-	$scope.details = ItemConfig.Item.get(Utils.Params.objectId);
-
-	var area = $scope.details.jobLocation[0]
-	var category = $scope.details.jobType[0]
-	$scope.category = ItemConfig.Category.getFromId(category).name;
-	$scope.area = ItemConfig.Area.getFromId(area).name;
+	Promise.resolve({method: 'GET', url: '/api/cobject/v0/item/'+itemId})
+      .then(function(response){
+		$scope.details = response.data;
+		if($scope.details) {
+	        var area = $scope.details.jobLocation[0]
+			var category = $scope.details.jobType[0]
+			$scope.category = ItemConfig.Category.getFromId(category).name;
+			$scope.area = ItemConfig.Area.getFromId(area).name;
+		}
+      },function(error){
+        console.log(error);
+        $scope.details = {};
+      });
+	
 	
 	IonicComponent.Modal.fromTemplateUrl('my-modal.html', {
 	    scope: $scope,
