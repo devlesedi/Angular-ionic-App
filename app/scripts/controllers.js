@@ -92,6 +92,13 @@ angular.module('angularApp.controllers', [])
 				var category = item.jobType[0];
 				$scope.category = ItemConfig.Category.getFromId(category).name;
 				$scope.area = ItemConfig.Area.getFromId(area).name;
+
+				IonicComponent.Modal.fromTemplateUrl('my-modal.html', {
+				    scope: $scope,
+				    animation: 'slide-in-up'
+				}).then(function(modal) {
+				    $scope.modal = modal;
+				});
 			}
 	      },function(error){
 	        console.log(error);
@@ -100,14 +107,7 @@ angular.module('angularApp.controllers', [])
 	}
 
 	$scope.getItem(Utils.Params.objectId);
-	
-	
-	IonicComponent.Modal.fromTemplateUrl('my-modal.html', {
-	    scope: $scope,
-	    animation: 'slide-in-up'
-	}).then(function(modal) {
-	    $scope.modal = modal;
-	});
+
 
 	$scope.openModal = function() {
 		$scope.modal.show();
