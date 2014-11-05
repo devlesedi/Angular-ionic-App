@@ -31,7 +31,7 @@ angular
     // localStorageServiceProvider.setStorageType('sessionStorage');
   }])
   .constant('angularMomentConfig', {
-    timezone: 'Africa/Johannesburg' // optional
+    timezone: 'Africa/Gaborone' // optional
   })
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     //Enable cross domain calls
