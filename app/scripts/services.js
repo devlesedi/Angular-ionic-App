@@ -107,7 +107,7 @@ angular.module('angularApp.services', [])
       var item = {};
       // Simple index lookup
       for(var i= 0; i<items.length; i++){
-        if(items[i]._id == itemId)
+        if(items[i].id == itemId)
         return items[i];
       }
     },
@@ -190,7 +190,6 @@ angular.module('angularApp.services', [])
       return bb;
     },
     validateAll: function(form , file){
-      console.log(Object.keys(form));
       if(Object.keys(form).length == 12 && file){
         return true
       }else

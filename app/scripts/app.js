@@ -19,20 +19,23 @@ angular
     'ngResource',
     'ui.router',
     'ngSanitize',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angularMoment'
   ])
   .constant('APPID', '4901c3')
   .constant('APIKEY','3bf5004e723d456e44859ec39cec4ee9f9e8cfba5b05fab5dd14d7bd338a9b13')
-  .constant('BASEURL', 'http://4901c3.stamplay.com') // e.g. http://APPID.stamplay.com
+  .constant('BASEURL', 'http://localhost:9000') // e.g. http://APPID.stamplay.com
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
   localStorageServiceProvider.setPrefix('lr');
     // localStorageServiceProvider.setStorageCookieDomain('example.com');
     // localStorageServiceProvider.setStorageType('sessionStorage');
   }])
+  .constant('angularMomentConfig', {
+    timezone: 'Africa/Johannesburg' // optional
+  })
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     //Enable cross domain calls
     $httpProvider.defaults.useXDomain = true;
-    console.log($httpProvider);
     //Remove the header used to identify ajax call  that would prevent CORS from working
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $urlRouterProvider.otherwise('/');
@@ -65,7 +68,7 @@ angular
         }
       })
       .state('jobs.list', {
-        url: '/:categoryName',
+        url: '/:jobType',
         views: {
           'tabledata': {
             templateUrl: 'views/jobs.html',
@@ -79,15 +82,6 @@ angular
           'tabledata': {
             templateUrl: 'views/jobs-view.html',
             controller: 'ItemCtrl'
-          }
-        }
-      })
-       .state('jobs.list.location', {
-        url: '/:location',
-        views: {
-          'tabledata': {
-            template: '<div>Location</div>',
-            controller: 'FindCtrl'
           }
         }
       })

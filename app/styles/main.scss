@@ -52,6 +52,7 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  background: url(/images/picjumbo.com_IMG_5539.jpg) no-repeat;
 
   .btn {
     font-size: 21px;
@@ -93,4 +94,14 @@ body {
 .media {
   a.list-item {width: 90px;}
   .bg-light {font-size: 10px;}
+}
+h1.logo {
+  font-size: 30px;
+  color: #fff;
+  background: #2ecc71;
+  display: inline-block;
+  margin: 0px 0px 10px;
+}
+h1.logo span {
+background: #f1c40f;
 }

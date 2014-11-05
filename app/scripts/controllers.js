@@ -33,6 +33,8 @@ angular.module('angularApp.controllers', [])
 	
 	
 	$scope.where = JSON.stringify(where);
+
+	
 	$scope.getJobsList = function() {
 		//Promise.resolve({method: 'GET', url: '/data/jobs.json?where='+ $scope.where})
 		Promise.resolve({method: 'GET', url: '/api/cobject/v0/item?where='+ $scope.where})
@@ -50,6 +52,11 @@ angular.module('angularApp.controllers', [])
 		})
 	}
 
+	$scope.badgeCat = function(d) {
+		var category = d.jobType[0];
+		return ItemConfig.Category.getFromId(category).name;
+	}
+
 	$scope.salary=function(d){
 		var i="P",t=d.salaryMin,r=d.salaryMax;return i+=r&&t?t+" - P"+r:t?t:r,d.salaryType&&(i+=" per "+d.salaryType),i};
 
@@ -65,7 +72,6 @@ angular.module('angularApp.controllers', [])
 			$scope.item.name = '';
 
 		var where  = {"jobTitle": { "$regex" : ".*"+$scope.item.name+".*", $options: "i"  }}
-		
 		if($scope.item.selectedCategory)
 			where.jobType = ItemConfig.Category.get($scope.item.selectedCategory)._id
 		
@@ -77,11 +83,42 @@ angular.module('angularApp.controllers', [])
 		$scope.getJobsList();
 	}
 
-	$scope.getJobsList();
+	if ($scope.items = {}, Utils.Params.jobType ) {
+		$scope.visible = true;
+		$scope.items = {};
+		$scope.load = true;
+		var where = {};
+		var n = Utils.Params.jobType;
+		switch(n) {
+			case "fulltime":
+				where.jobType = ItemConfig.Category.get('Full-time')._id;
+				break;
+			case "contracts":
+				where.jobType = ItemConfig.Category.get("Contracts")._id;
+				break;
+			case "part-time":
+				where.jobType = ItemConfig.Category.get("Part-time")._id;
+				break;
+			case "freelance":
+				where.jobType = ItemConfig.Category.get("Freelance")._id;
+				break;
+			default:
+				break;
+		}
+		$scope.where = JSON.stringify(where);
+
+		$scope.getJobsList();
+	} else {
+		$scope.getJobsList();
+	}
+
 })
 .controller('ItemCtrl', function($scope, Utils, IonicComponent, ItemConfig, Promise) {
 
 	//angular.module("jobDetails",["ngSanitize"]).controller("jobDetailsCtrl",["$scope","$http","$routeParams",function(n,t,i){n.details={};n.applicant={};n.getJobDetails=function(i){t.get("/api/Jobs/GetJobDetails",{params:{id:i}}).success(function(t){n.details=t})};n.getJobDetails(i.jobId);n.salary=function(){var i="£",t=n.details.salaryMin,r=n.details.salaryMax;return i+=r&&t?t+" - £"+r:t?t:r,n.details.salaryType&&(i+=" per "+n.details.salaryType),i};n.applyForJob=function(){item={email:n.applicant.email,skills:n.applicant.skills,experience:n.applicant.experience,message:n.applicant.message,jobPostId:n.details.id};n.applicant.email!=""&&t.post("/api/Jobs/ApplyForJob",item).success(function(){n.applicant.message="";n.applied=!0;n.apply=!1})}}]);
+	$scope.salary=function(d){
+		var i="P",t=d.salaryMin,r=d.salaryMax;return i+=r&&t?t+" - P"+r:t?t:r,d.salaryType&&(i+=" per "+d.salaryType),i};
+
 	$scope.getItem = function(itemId) {
 		Promise.resolve({method: 'GET', url: '/api/cobject/v0/item/'+itemId})
 		.then(function(response){
@@ -105,8 +142,23 @@ angular.module('angularApp.controllers', [])
 	        $scope.details = {};
 	      });
 	}
+	$scope.getTest = function(itemId) {
+		$scope.details = ItemConfig.Item.get(itemId);
+		var area = $scope.details.jobLocation;
+		var category = $scope.details.jobType;
+		$scope.category = area;
+		$scope.area = category;
+		
+		IonicComponent.Modal.fromTemplateUrl('my-modal.html', {
+	    scope: $scope,
+	    animation: 'slide-in-up'
+	  }).then(function(modal) {
+	    $scope.modal = modal;
+	  });
+	}
 
 	$scope.getItem(Utils.Params.objectId);
+	//$scope.getTest(Utils.Params.objectId);
 
 
 	$scope.openModal = function() {
@@ -161,7 +213,6 @@ angular.module('angularApp.controllers', [])
 	
 
 		function onSuccess(evt) {
-			console.log('onchange');
 			var files = evt.target.files;
 			for (var i = 0,f; f = files[i];i++) {
 				if (!f.type.match("image*")) {continue;};
@@ -222,7 +273,7 @@ angular.module('angularApp.controllers', [])
 					var popup = PopupTemplate.popupEmailPublish()
 					var alertPopup = IonicComponent.Popup.alert(popup);
 			   	alertPopup.then(function(res) {
-			     	Utils.State.go('tab.item', {})
+			     	Utils.State.go('tab', {})
 			   	});
 				},function(err){
 					console.log(err)

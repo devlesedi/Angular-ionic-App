@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>VGBots + Jobs | Find Jobs in Gaborone</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -30,10 +30,10 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ui-sref="home">Home</a></li>
-          <li><a ui-sref="jobs.list">Jobs</a></li>
-          <li><a ui-sref="about">About</a></li>
-          <li><a ui-sref="contact">Contact</a></li>
+          <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+          <li ui-sref-active="active"><a ui-sref="jobs.list">Jobs</a></li>
+          <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+          <li ui-sref-active="active"><a ui-sref="contact">Contact</a></li>
           <li class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
               
@@ -47,7 +47,7 @@
             </ul>
           </li>
         </ul>
-        <h3 class="text-muted">ITJobs</h3>
+        <h1 class="text-muted logo">VG<span>Bots</span></h1>
       </div>
 
       <div ui-view=""></div>
@@ -101,6 +101,8 @@
     <script src="bower_components/collide/collide.js"></script>
     <script src="bower_components/ionic/js/ionic.js"></script>
     <script src="bower_components/ionic/js/ionic-angular.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

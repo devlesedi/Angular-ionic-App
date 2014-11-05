@@ -1,13 +1,12 @@
 <div class="job-details">
     <div class="wrapper b-b">
-        <h3 class="font-thin m-n">{{details.jobTitle}}<small ng-show="details.tagline"><br></small></h3>
+        <h3 class="font-thin m-n">{{details.jobTitle}}<small ng-show="details.hiringCompany"><br>at {{details.hiringCompany}}</small></h3>
     </div>
     <div class="wrapper b-b">
-
         <span class="thumbnail thumb-sm m-r-sm" style="font-size:30px;">Job</span>
         <span ng-show="details.hiringCompany && !details.hiringCompanyWebsite">,</span>
-        <a ng-show="details.hiringCompanyWebsite &amp;&amp; details.hiringCompany" style="text-decoration:underline;" href="" target="_blank">,</a>
-        <span class="ng-binding">{{details.salaryNote}}</span>
+        <a ng-show="details.hiringCompanyWebsite &amp;&amp; details.hiringCompany" style="text-decoration:underline;" href="{{details.hiringCompanyWebsite}}" target="_blank">{{details.hiringCompany}},</a>
+        <span ng-show="{{details.salaryMin}}" class="badge pull-right bg-light">{{salary(details)}}</span>
         <div class="pull-right text-sm text-muted">
             <span am-time-ago="details.dateCreated">{{details.dateCreated}}</span>
         </div>
@@ -19,7 +18,7 @@
         Source: <a href="{{details.sourceReference}}" target="_blank" title="Imported Angular.Js job source"></a>
     </div>
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div class="panel b-a">
             <div class="panel-heading" ng-hide="apply">
                 <div class="m-b-lg">
@@ -42,5 +41,5 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 </div>
