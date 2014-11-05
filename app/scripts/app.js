@@ -24,7 +24,7 @@ angular
   ])
   .constant('APPID', '4901c3')
   .constant('APIKEY','3bf5004e723d456e44859ec39cec4ee9f9e8cfba5b05fab5dd14d7bd338a9b13')
-  .constant('BASEURL', 'http://localhost:9000') // e.g. http://APPID.stamplay.com
+  .constant('BASEURL', 'http://4901c3.stamplay.com') // e.g. http://APPID.stamplay.com
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
   localStorageServiceProvider.setPrefix('lr');
     // localStorageServiceProvider.setStorageCookieDomain('example.com');
