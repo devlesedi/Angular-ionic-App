@@ -55,7 +55,7 @@
         <div>
         <h3><a class="text-md" href="#/jobs/view/{{object.id}}">{{object.jobTitle}}</a><span ng-show="{{object.salaryMin}}" class="badge pull-right bg-light">{{salary(object)}}</span></h3>
         </div>
-        <p class="text-2-l">at {{object.hiringCompany}} <small>Listed <span am-time-ago="object.dateCreated"></span></small><div class="bagde">{{badgeCat(object)}}</div></p>
+        <p class="text-2-l">at {{object.hiringCompany}} <small>Listed <span am-time-ago="object.dt_create"></span></small><div class="badge">{{badgeCat(object)}}</div></p>
       </div>
     </li>
 	</ul>
